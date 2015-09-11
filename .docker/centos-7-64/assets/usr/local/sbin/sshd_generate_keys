@@ -1,0 +1,16 @@
+#!/bin/sh
+
+SSH_KEY_PATH="/etc/ssh"
+SSH_HOST_ECDSA="${SSH_KEY_PATH}/ssh_host_ecdsa_key"
+SSH_HOST_ED25519="${SSH_KEY_PATH}/ssh_host_ed25519_key"
+SSH_HOST_RSA="${SSH_KEY_PATH}/ssh_host_rsa_key"
+
+#Generate the ssh host keys if needed
+if [ ! -f "$SSH_HOST_ECDSA" -o ! -f "$SSH_HOST_ED25519" -o ! -f "$SSH_HOST_RSA" ]; then
+  echo "No SSH host keys present, generating..."
+  mkdir -p $SSH_KEY_PATH
+  ssh-keygen -q -t rsa -f $SSH_HOST_RSA -C '' -N '' >&/dev/null
+  ssh-keygen -q -t ecdsa -f $SSH_HOST_ECDSA -C '' -N '' >&/dev/null
+  ssh-keygen -q -t ed25519 -f $SSH_HOST_ED25519 -C '' -N '' >&/dev/null
+  chmod 600 ${SSH_KEY_PATH}/*
+fi
