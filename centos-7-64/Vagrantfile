@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provider 'virtualbox' do |_, override|
-    override.vm.box = 'puppetlabs/centos-7.0-64-nocm'
+    override.vm.box = 'bento/centos-7.2'
 
     # some tools (they are packaged in docker, but probably not here)
     override.vm.provision 'shell', inline: 'yum -y install git curl wget'

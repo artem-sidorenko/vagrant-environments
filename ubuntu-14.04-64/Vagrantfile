@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provider 'virtualbox' do |_, override|
-    override.vm.box = 'puppetlabs/ubuntu-14.04-64-nocm'
+    override.vm.box = 'bento/ubuntu-14.04'
 
     # some tools (they are packaged in docker, but probably not here)
     override.vm.provision 'shell', inline: 'apt-get update; apt-get -y install git curl wget'
