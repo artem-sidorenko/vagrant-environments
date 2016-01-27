@@ -15,7 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.synced_folder '.', '/vagrant'
-  config.vm.synced_folder 'share', '/home/vagrant/share'
+  config.vm.synced_folder '../share', '/home/vagrant/share'
 
   # automatically move to the mounted share directory
   config.vm.provision 'shell', inline: "grep -q 'cd /home/vagrant/share' /home/vagrant/.bash_profile || echo 'cd /home/vagrant/share' >> /home/vagrant/.bash_profile"
