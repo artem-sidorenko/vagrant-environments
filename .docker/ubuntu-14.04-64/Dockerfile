@@ -1,5 +1,5 @@
 FROM ubuntu:trusty
-MAINTAINER Artem Sidorenko <artem@2realities.com>
+MAINTAINER Artem Sidorenko <artem@posteo.de>
 
 RUN apt-get update ;\
     apt-get -y install openssh-server supervisor man-db rsync;\

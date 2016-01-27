@@ -1,5 +1,5 @@
 FROM centos:latest
-MAINTAINER Artem Sidorenko <artem@2realities.com>
+MAINTAINER Artem Sidorenko <artem@posteo.de>
 
 #enable man pages installation
 RUN sed -i '/nodocs/d' /etc/yum.conf ; \
