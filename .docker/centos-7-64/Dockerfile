@@ -6,7 +6,7 @@ RUN sed -i '/nodocs/d' /etc/yum.conf ; \
     yum -y install man-pages man-db epel-release ; \
     yum clean all
 
-RUN yum -y install openssh-server openssh-clients supervisor sudo ;\
+RUN yum -y install openssh-server openssh-clients supervisor sudo rsync;\
     sed -i '/requiretty/d' /etc/sudoers; \
     yum clean all
 

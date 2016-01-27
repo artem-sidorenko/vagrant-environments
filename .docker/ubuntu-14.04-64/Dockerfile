@@ -2,7 +2,7 @@ FROM ubuntu:trusty
 MAINTAINER Artem Sidorenko <artem@2realities.com>
 
 RUN apt-get update ;\
-    apt-get -y install openssh-server supervisor man-db ;\
+    apt-get -y install openssh-server supervisor man-db rsync;\
     rm -rf /var/lib/apt/lists/* ;\
     mkdir /var/run/sshd
 
