@@ -5,13 +5,16 @@ VAGRANTFILE_API_VERSION = '2'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider 'docker' do |d|
-    d.build_dir = '../.docker/centos-7-64'
+    d.image = 'artemsidorenko/vagrant-environments:centos7'
     d.has_ssh = true
     d.remains_running = true
   end
 
   config.vm.provider 'virtualbox' do |_, override|
     override.vm.box = 'puppetlabs/centos-7.0-64-nocm'
+
+    # some tools (they are packaged in docker, but probably not here)
+    override.vm.provision 'shell', inline: 'yum -y install git curl wget'
   end
 
   config.vm.synced_folder '.', '/vagrant'
@@ -19,7 +22,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # automatically move to the mounted share directory
   config.vm.provision 'shell', inline: "grep -q 'cd /home/vagrant/share' /home/vagrant/.bash_profile || echo 'cd /home/vagrant/share' >> /home/vagrant/.bash_profile"
-
-  # some tools
-  config.vm.provision 'shell', inline: 'yum -y install git curl wget'
 end

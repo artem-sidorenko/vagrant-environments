@@ -5,13 +5,16 @@ VAGRANTFILE_API_VERSION = '2'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider 'docker' do |d|
-    d.build_dir = '../.docker/ubuntu-14.04-64'
+    d.image = 'artemsidorenko/vagrant-environments:ubuntu1404'
     d.has_ssh = true
     d.remains_running = true
   end
 
   config.vm.provider 'virtualbox' do |_, override|
     override.vm.box = 'puppetlabs/ubuntu-14.04-64-nocm'
+
+    # some tools (they are packaged in docker, but probably not here)
+    override.vm.provision 'shell', inline: 'apt-get update; apt-get -y install git curl wget'
   end
 
   config.vm.synced_folder '.', '/vagrant'
@@ -19,7 +22,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # automatically move to the mounted share directory
   config.vm.provision 'shell', inline: "grep -q 'cd /home/vagrant/share' /home/vagrant/.profile || echo 'cd /home/vagrant/share' >> /home/vagrant/.profile"
-
-  # some tools
-  config.vm.provision 'shell', inline: 'apt-get update; apt-get -y install git curl wget'
 end

@@ -2,12 +2,13 @@ FROM centos:latest
 MAINTAINER Artem Sidorenko <artem@posteo.de>
 
 #enable man pages installation
-RUN sed -i '/nodocs/d' /etc/yum.conf ; \
-    yum -y install man-pages man-db epel-release ; \
+RUN sed -i '/nodocs/d' /etc/yum.conf ;\
+    yum -y install man-pages man-db epel-release ;\
     yum clean all
 
-RUN yum -y install openssh-server openssh-clients supervisor sudo rsync;\
-    sed -i '/requiretty/d' /etc/sudoers; \
+RUN yum -y install openssh-server openssh-clients supervisor sudo rsync ;\
+    sed -i '/requiretty/d' /etc/sudoers ;\
+    yum -y install git curl wget ;\
     yum clean all
 
 #password is vagrant
@@ -17,7 +18,7 @@ COPY assets /
 
 RUN /usr/local/sbin/sshd_generate_keys
 
-RUN chown -R vagrant:vagrant /home/vagrant; \
+RUN chown -R vagrant:vagrant /home/vagrant ;\
     chmod 600 /home/vagrant/.ssh/authorized_keys
 
 CMD supervisord -c /etc/supervisord.conf
