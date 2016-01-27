@@ -22,4 +22,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # automatically move to the mounted share directory
   config.vm.provision 'shell', inline: "grep -q 'cd /home/vagrant/share' /home/vagrant/.profile || echo 'cd /home/vagrant/share' >> /home/vagrant/.profile"
+
+  # include some local settings if possible
+  if File.exists?('../vagrant.local.rb')
+    local_settings = File.read('../vagrant.local.rb')
+    eval local_settings
+  end
 end

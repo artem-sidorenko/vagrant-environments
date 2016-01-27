@@ -1,2 +1,3 @@
 .vagrant
 share
+vagrant.local.rb

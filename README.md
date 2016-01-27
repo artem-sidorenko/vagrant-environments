@@ -22,6 +22,13 @@ vagrant up --provider=docker
 vagrant up --provider=virtualbox
 ```
 
+You can add some local settings by creating `vagrant.local.rb`. Content of this file is evaluated in scope of `Vagrant.configure`. Example:
+
+```ruby
+# Add another synced_folder
+config.vm.synced_folder '../../another-share', '/home/vagrant/another-share'
+```
+
 Contributions
 =============
 
