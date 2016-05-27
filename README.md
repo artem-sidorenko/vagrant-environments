@@ -5,12 +5,6 @@ This is repository with test environments I use for some tests or even developme
 
 This environments are created with Vagrant and support two providers: docker and virtualbox.
 
-Environment list
-================
-
- - centos-7-64 - Centos 7 base image
- - ubuntu-14.04-64 - Ubuntu 14.04 base image
-
 How to use
 ==========
 
@@ -28,6 +22,8 @@ You can add some local settings by creating `vagrant.local.rb`. Content of this 
 # Add another synced_folder
 config.vm.synced_folder '../../another-share', '/home/vagrant/another-share'
 ```
+
+There are some further examples in the folder `examples`.
 
 Contributions
 =============
