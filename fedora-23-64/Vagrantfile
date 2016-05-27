@@ -4,6 +4,10 @@
 VAGRANTFILE_API_VERSION = '2'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # disable cache via vagrant-cachier
+  # https://github.com/fgrehm/vagrant-cachier/issues/163
+  config.cache.auto_detect = false if Vagrant.has_plugin?('vagrant-cachier')
+
   config.vm.provider 'docker' do |d|
     d.image = 'artemsidorenko/vagrant-environments:fedora23'
     d.has_ssh = true
