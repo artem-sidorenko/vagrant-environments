@@ -2,6 +2,7 @@ FROM debian:jessie
 MAINTAINER Artem Sidorenko <artem@posteo.de>
 
 RUN apt-get update ;\
+    apt-get -y install sudo ;\
     apt-get -y install openssh-server supervisor man-db rsync ;\
     apt-get -y install git curl wget ;\
     rm -rf /var/lib/apt/lists/* ;\
