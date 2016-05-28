@@ -14,18 +14,18 @@ if [ "$dist" == "ubuntu" ]; then
   sh -c "echo 'deb http://download.opensuse.org/repositories/#{repo}/Ubuntu_16.04/ /' >> /etc/apt/sources.list.d/rkt.list"
   wget -O - http://download.opensuse.org/repositories/#{repo}/Ubuntu_16.04/Release.key | apt-key add -
   apt-get update
-  apt-get -y install rkt acbuild
+  apt-get -y install rkt acbuild actool
 elif [ "$dist" == "debian" ]; then
   sh -c "echo 'deb http://download.opensuse.org/repositories/#{repo}/Debian_8.0/ /' >> /etc/apt/sources.list.d/rkt.list"
   wget -O - http://download.opensuse.org/repositories/#{repo}/Debian_8.0/Release.key | apt-key add -
   apt-get update
-  apt-get -y install rkt acbuild02
+  apt-get -y install rkt acbuild02 actool
 elif [ "$dist" == "centos" ]; then
   wget -O /etc/yum.repos.d/rkt.repo http://download.opensuse.org/repositories/#{repo}/CentOS_7/#{repo}.repo
-  yum -y install rkt acbuild02
+  yum -y install rkt acbuild02 actool
 elif [ "$dist" == "fedora" ]; then
   wget -O /etc/yum.repos.d/rkt.repo http://download.opensuse.org/repositories/#{repo}/Fedora_23/#{repo}.repo
-  dnf -y install rkt acbuild02
+  dnf -y install rkt acbuild02 actool
 else
   echo "Distro $dist isn't supported"
   exit 1
