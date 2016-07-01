@@ -11,6 +11,11 @@ config.vm.network 'forwarded_port', guest: 3080, host: 3080, auto_correct: true
 config.vm.provision 'shell', inline: <<-EOS
 dist=`grep ^ID= /etc/*-release | awk -F '=' '{print $2}' | tr -d '"'`
 if [ "$dist" == "ubuntu" ]; then
+  # disable background apt tasks
+  # https://github.com/chef/bento/issues/609
+  systemctl stop apt-daily.service apt-daily.timer
+  systemctl disable apt-daily.service apt-daily.timer
+
   sh -c "echo 'deb http://download.opensuse.org/repositories/#{repo}/Ubuntu_16.04/ /' >> /etc/apt/sources.list.d/rkt.list"
   wget -O - http://download.opensuse.org/repositories/#{repo}/Ubuntu_16.04/Release.key | apt-key add -
   apt-get update
