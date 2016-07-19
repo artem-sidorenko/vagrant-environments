@@ -10,8 +10,10 @@ config.vm.provision 'shell', inline: <<-EOS
 dist=`grep ^ID= /etc/*-release | awk -F '=' '{print $2}' | tr -d '"'`
 if [ "$dist" == "ubuntu" ]; then
   curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | bash
+  curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | bash
 elif [ "$dist" == "centos" ]; then
   curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | bash
+  curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | bash
 else
   echo 'Only centos and ubuntu are implemented for GitLab autosetup'
   exit 1
