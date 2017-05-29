@@ -28,7 +28,7 @@ There are some further examples in the folder `examples`.
 Contributions
 =============
 
-Please use [GitLab Merge Requests][gitlab_mr] for this.
+Please use [GitHub Pull requests][github_pullreq] for this.
 
 License and copyright
 =====================
@@ -37,4 +37,4 @@ Copyright 2015 Artem Sidorenko and contributors.
 See the COPYRIGHT file at the top-level directory of this distribution
 and at https://github.com/artem-sidorenko/vagrant-environments/blob/master/COPYRIGHT
 
-[gitlab_mr]: https://gitlab.com/help/workflow/gitlab_flow.md#mergepull-requests-with-gitlab-flow
+[github_pullreq]: https://help.github.com/articles/using-pull-requests
