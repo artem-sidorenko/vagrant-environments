@@ -4,14 +4,8 @@
 VAGRANTFILE_API_VERSION = '2'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.provider 'docker' do |d|
-    d.image = 'artemsidorenko/vagrant-environments:debian84'
-    d.has_ssh = true
-    d.remains_running = true
-  end
-
   config.vm.provider 'virtualbox' do |_, override|
-    override.vm.box = 'bento/debian-8.4'
+    override.vm.box = 'bento/ubuntu-18.04'
 
     # some tools (they are packaged in docker, but probably not here)
     override.vm.provision 'shell', inline: 'apt-get update; apt-get -y install git curl wget'
